@@ -34,25 +34,4 @@ public class UserController {
         return userRepository.findById(id);
     }
 
-    @PostMapping("/{id}/friends/{friendId}")
-    public User addFriend(@PathVariable Long id, @PathVariable Long friendId){
-        User user = userRepository.findById(id).orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND,"User not found."));
-        User friend = userRepository.findById(friendId).orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND,"User not found."));
-        user.addFriend(friend);
-        friend.addFriend(user);
-        userRepository.save(friend);
-        return userRepository.save(user);
-
-    }
-
-    @DeleteMapping("/{id}/friends/{friendId}")
-    public User removeFriend(@PathVariable Long id, @PathVariable Long friendId){
-        User user = userRepository.findById(id).orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND,"User not found."));
-        User friend = userRepository.findById(friendId).orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND,"User not found."));
-        user.deleteFriend(friend);
-        friend.deleteFriend(user);
-        userRepository.save(friend);
-        return userRepository.save(user);
-
-    }
 }

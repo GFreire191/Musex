@@ -2,12 +2,17 @@ package com.musex.Controllers;
 
 
 import com.musex.Repository.ArtistRepository;
+import com.musex.Repository.MusicRepository;
 import com.musex.entities.Artist;
+import com.musex.entities.Music;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Optional;
+import java.util.Set;
 
 @RestController
 @RequestMapping("api/artists")
@@ -15,6 +20,9 @@ public class ArtistController {
 
     @Autowired
     private ArtistRepository artistRepository;
+
+    @Autowired
+    private MusicRepository musicRepository;
 
      @PostMapping
     public Artist createArtist(@Valid @RequestBody Artist artist){
@@ -24,5 +32,11 @@ public class ArtistController {
      @GetMapping("/{id}")
     public Optional<Artist> getArtist(@PathVariable Long id){
          return artistRepository.findById(id);
+     }
+
+     @GetMapping("/{id}/musics")
+    public Set<Music> getMusics(@PathVariable Long id){
+         Artist artist = artistRepository.findById(id).orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND,"Artist Not Found"));
+         return artist.getArtistMusics();
      }
 }
