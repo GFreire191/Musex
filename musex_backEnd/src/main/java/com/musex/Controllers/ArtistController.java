@@ -39,4 +39,19 @@ public class ArtistController {
          Artist artist = artistRepository.findById(id).orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND,"Artist Not Found"));
          return artist.getArtistMusics();
      }
+
+     @PutMapping("/{id}")
+     public Artist updateArtist(@PathVariable Long id, @Valid @RequestBody Artist artist){
+         Artist artistToEdit = artistRepository.findById(id).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND,"Artist Not Found"));
+         artistToEdit.setArtistMusics(artist.getArtistMusics());
+         artistToEdit.setAge(artist.getAge());
+         artistToEdit.setName(artist.getName());
+         artistToEdit.setDescription(artist.getDescription());
+         return artistRepository.save(artistToEdit);
+     }
+
+     @DeleteMapping("/{id}")
+    public void deleteArtist(@PathVariable Long id){
+         artistRepository.deleteById(id);
+     }
 }

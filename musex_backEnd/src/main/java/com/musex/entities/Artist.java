@@ -64,4 +64,7 @@ public class Artist {
         return artistMusics;
     }
 
+    public void setArtistMusics(Set<Music> artistMusics) {
+        this.artistMusics = artistMusics;
+    }
 }

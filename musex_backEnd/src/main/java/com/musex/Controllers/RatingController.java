@@ -49,12 +49,33 @@ public class RatingController {
         return user.getRatings();
     }
 
-    //Find rating of a specific user for a specific music
+    //Find rating of a specific user for a specific music rating
     @GetMapping("/user/{userId}/music/{musicId}")
     public Rating getUserMusicRating(@PathVariable Long userId, @PathVariable Long musicId){
         User user = userRepository.findById(userId).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND,"USER NOT FOUND"));
         Music music = musicRepository.findById(musicId).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND,"MUSIC NOT FOUND"));
         return ratingRepository.findByUserAndMusic(user,music).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND,"RATING NOT FOUND"));
     }
+
+    //Edit rating of a specific user for a specific music rating
+    @PutMapping("/user/{userId}/music/{musicId}")
+    public Rating editUserMusicRating(@PathVariable Long userId, @PathVariable Long musicId, @RequestParam Integer new_rating){
+        User user = userRepository.findById(userId).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND,"USER NOT FOUND"));
+        Music music = musicRepository.findById(musicId).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND,"MUSIC NOT FOUND"));
+        Rating rating = ratingRepository.findByUserAndMusic(user,music).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND,"RATING NOT FOUND"));
+        rating.setRating(new_rating);
+        return rating;
+    }
+
+    //Delete rating of a specific user for a specific music rating
+    @DeleteMapping("/user/{userId}/music/{musicId}")
+    public void deleteUserMusicRating(@PathVariable Long userId, @PathVariable Long musicId){
+        User user = userRepository.findById(userId).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND,"USER NOT FOUND"));
+        Music music = musicRepository.findById(musicId).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND,"MUSIC NOT FOUND"));
+        Rating rating = ratingRepository.findByUserAndMusic(user,music).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND,"RATING NOT FOUND"));
+        ratingRepository.delete(rating);
+    }
+
+
 
 }

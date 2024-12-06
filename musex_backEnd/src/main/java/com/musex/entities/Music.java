@@ -61,6 +61,14 @@ public class Music {
         this.title = title;
     }
 
+    public void setMusicArtists(Set<Artist> musicArtists) {
+        this.musicArtists = musicArtists;
+    }
+
+    public void setRatings(Set<Rating> ratings) {
+        this.ratings = ratings;
+    }
+
     public Set<Artist> getMusicArtists() {
         return musicArtists;
     }

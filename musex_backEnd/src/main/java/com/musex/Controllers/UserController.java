@@ -34,4 +34,18 @@ public class UserController {
         return userRepository.findById(id);
     }
 
+    //Edit user
+    @PutMapping("/{id}")
+    public User editUser(@PathVariable Long id, @Valid @RequestBody User user){
+        User userToEdit = userRepository.findById(id).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND,"USER NOT FOUND"));
+        userToEdit.setUsername(user.getUsername());
+        userToEdit.setEmail(user.getEmail());
+        userToEdit.setPassword(passwordEncoder.encode(user.getPassword()));
+        return userRepository.save(userToEdit);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteUser(@PathVariable Long id){
+        userRepository.deleteById(id);
+    }
 }

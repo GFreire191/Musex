@@ -38,4 +38,18 @@ public class AlbumController {
         Album album = albumRepository.findById(albumId).orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND,"ALBUM NOT FOUND"));
         return musicRepository.findByAlbum(album);
     }
+
+    @PutMapping("/{id}")
+    public Album updateAlbum(@PathVariable Long id, @Valid @RequestBody Album album){
+        Album albumToEdit =albumRepository.findById(id).orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND,"Album Not Found"));
+        albumToEdit.setName(album.getName());
+        albumToEdit.setYear(albumToEdit.getYear());
+        albumToEdit.setMusics(album.getMusics());
+        return albumRepository.save(albumToEdit);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteAlbum(@PathVariable Long id){
+        albumRepository.deleteById(id);
+    }
 }

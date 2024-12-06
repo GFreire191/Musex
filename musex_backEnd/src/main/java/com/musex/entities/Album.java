@@ -23,4 +23,29 @@ public class Album {
     @OneToMany(mappedBy = "album")
     Set<Music> musics = new HashSet<>();
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Integer getYear() {
+        return year;
+    }
+
+    public Set<Music> getMusics() {
+        return musics;
+    }
+
+    public void setMusics(Set<Music> musics) {
+        this.musics = musics;
+    }
+
+    public void setYear(Integer year) {
+        this.year = year;
+    }
+
+
 }

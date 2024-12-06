@@ -35,4 +35,21 @@ public class MusicController {
         return music.getMusicArtists();
     }
 
+    //Edit the music
+    @PutMapping("/{id}")
+    public Music updateMusic(@PathVariable Long id, @Valid @RequestBody Music music){
+        Music musicToEdit = musicRepository.findById(id).orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND,"Music Not Found"));
+        musicToEdit.setAlbum(music.getAlbum());
+        musicToEdit.setDuration(music.getDuration());
+        musicToEdit.setTitle(music.getTitle());
+        musicToEdit.setMusicArtists(music.getMusicArtists());
+        musicToEdit.setRatings(music.getRatings());
+        return musicRepository.save(musicToEdit);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteMusic(@PathVariable Long id){
+        musicRepository.deleteById(id);
+    }
+
 }
