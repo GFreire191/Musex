@@ -1,6 +1,7 @@
 package com.musex.entities;
 
 
+import com.musex.entities.User.User;
 import jakarta.persistence.*;
 
 @Entity

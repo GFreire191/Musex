@@ -1,7 +1,7 @@
 package com.musex.Controllers;
 
 import com.musex.Repository.UserRepository;
-import com.musex.entities.User;
+import com.musex.entities.User.User;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,12 +23,6 @@ public class UserController {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
-
-    @PostMapping
-    public User createUser(@Valid @RequestBody User user){
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        return userRepository.save(user);
-    }
 
     @GetMapping("/{id}")
     public Optional<User> getUser(@PathVariable Long id){

@@ -5,7 +5,7 @@ import com.musex.Repository.RatingRepository;
 import com.musex.Repository.UserRepository;
 import com.musex.entities.Music;
 import com.musex.entities.Rating;
-import com.musex.entities.User;
+import com.musex.entities.User.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
