@@ -1,0 +1,43 @@
+// Variables
+$navbar-bg-color: #000000;
+$navbar-text-color: white;
+$navbar-special-text-color: #FF6060;
+
+// Styles
+nav {
+  background-color: $navbar-bg-color;
+  color: $navbar-text-color;
+  padding: 1em;
+
+  .navbar-brand{
+    font-size: 3em;
+    font-weight: 900;
+    text-decoration: none;
+    color: $navbar-special-text-color;
+
+
+  }
+  ul {
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+    margin-left: auto;
+    margin-right: 15em;
+
+    li {
+      display: inline;
+      margin-right: 4em;
+
+
+      a {
+        color: $navbar-text-color;
+        text-decoration: none;
+        font-size: 1.3em;
+
+        &:hover {
+          color: $navbar-special-text-color;
+        }
+      }
+    }
+  }
+}
