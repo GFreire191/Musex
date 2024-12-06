@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -32,6 +33,11 @@ public class UserController {
     @GetMapping("/{id}")
     public Optional<User> getUser(@PathVariable Long id){
         return userRepository.findById(id);
+    }
+
+    @GetMapping
+    public List<User> getUsers(){
+        return userRepository.findAll();
     }
 
     //Edit user
