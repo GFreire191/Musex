@@ -18,9 +18,6 @@ getUser(id: number):Observable<any>{
     return this.http.get(`${this.apiUrl}/${id}`);
 }
 
-createUser(user: any):Observable<any>{
-    return this.http.post(this.apiUrl,user);
-}
 
 updateUser(id: number, user:any):Observable<any>{
     return this.http.put(`${this.apiUrl}/${id}`,user);
