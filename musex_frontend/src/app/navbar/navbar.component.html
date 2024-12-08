@@ -8,13 +8,19 @@
     </form>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
-        <li class="nav-item">
+        <li class="nav-item authButton" *ngIf="!(authService.isLoggedIn() | async)">
           <a class="nav-link" routerLink="register" routerLinkActive="active" ariaCurrentWhenActive="page">Register</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item authButton" *ngIf="!(authService.isLoggedIn() | async)">
           <a class="nav-link" routerLink="login" routerLinkActive="active" ariaCurrentWhenActive="page">Login</a>
         </li>
-        
+        <li class="nav-item">
+          <a class="nav-link loggedBtn" *ngIf="authService.isLoggedIn() | async" [routerLink]="['/profile',userId]" routerLinkActive="active" ariaCurrentWhenActive="page">Profile</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link loggedBtn" *ngIf="authService.isLoggedIn() | async" (click)="authService.logout()" routerLinkActive="active" ariaCurrentWhenActive="page">Logout</a>
+        </li>
+
       </ul>
     </div>
   </div>

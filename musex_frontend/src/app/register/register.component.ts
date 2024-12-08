@@ -36,7 +36,6 @@ export class RegisterComponent {
         },
         complete: () => {
           console.log("Registration complete");
-          // Redirect to home page
 
         }
       });
