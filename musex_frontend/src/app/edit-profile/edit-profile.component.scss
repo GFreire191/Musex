@@ -43,5 +43,20 @@ section
         }
     }
 
+    .subBtnWrp{
+      position: absolute;
+      top: 490%;
+      right: 65%;
+    }
+    .btn{
+      background-color: #FF6060;
+      border-width: 0;
+      border-radius: 5%;
+      font-size: 1.5em;
+      &:hover{
+        background-color: #000000;
+        color: #FF6060;
+      }
+    }
 
 }

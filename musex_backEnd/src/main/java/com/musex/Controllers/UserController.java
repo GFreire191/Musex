@@ -10,6 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 
@@ -36,11 +37,20 @@ public class UserController {
 
     //Edit user
     @PutMapping("/{id}")
-    public User editUser(@PathVariable Long id, @Valid @RequestBody User user){
+    public User editUser(@PathVariable Long id, @RequestBody User user){
         User userToEdit = userRepository.findById(id).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND,"USER NOT FOUND"));
-        userToEdit.setUsername(user.getUsername());
-        userToEdit.setEmail(user.getEmail());
-        userToEdit.setPassword(passwordEncoder.encode(user.getPassword()));
+        System.out.println(user.getUsername());
+        System.out.println(user.getEmail());
+        System.out.println(user.getPassword());
+        if (!Objects.equals(user.getUsername(), "")) {
+            userToEdit.setUsername(user.getUsername());
+        }
+        if (!Objects.equals(user.getEmail(), "")) {
+            userToEdit.setEmail(user.getEmail());
+        }
+        if (user.getPassword() != null) {
+            userToEdit.setPassword(passwordEncoder.encode(user.getPassword()));
+        }
         return userRepository.save(userToEdit);
     }
 

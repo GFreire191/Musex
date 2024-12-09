@@ -66,6 +66,8 @@ export class AuthService {
     localStorage.removeItem('authToken');
     localStorage.removeItem('authTokenExpiration');
     this.loggedIn.next(false);
+
+    
   }
 
   getUserInfo(id: string): Observable<any> {

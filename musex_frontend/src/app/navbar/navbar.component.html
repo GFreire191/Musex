@@ -18,7 +18,7 @@
           <a class="nav-link loggedBtn" *ngIf="authService.isLoggedIn() | async" [routerLink]="['/profile',userId]" routerLinkActive="active" ariaCurrentWhenActive="page">Profile</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link loggedBtn" *ngIf="authService.isLoggedIn() | async" (click)="authService.logout()" routerLinkActive="active" ariaCurrentWhenActive="page">Logout</a>
+          <a class="nav-link loggedBtn" *ngIf="authService.isLoggedIn() | async" (click)="authService.logout()" routerLink="" routerLinkActive="active" ariaCurrentWhenActive="page">Logout</a>
         </li>
 
       </ul>
