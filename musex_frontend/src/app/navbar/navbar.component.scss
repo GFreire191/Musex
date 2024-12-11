@@ -3,34 +3,36 @@ $navbar-bg-color: #000000;
 $navbar-text-color: white;
 $navbar-special-text-color: #FF6060;
 
+@mixin button-styles($hover-bg-color: rgba(255, 255, 255, 0.1), $hover-border-color: $navbar-special-text-color) {
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-block;
+  border: 0.2rem solid $navbar-special-text-color;
+  padding: 0.2rem 0.5rem;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+  background-color: $navbar-bg-color;
+
+
+  &:hover {
+    background-color: $hover-bg-color;
+    border-color: $hover-border-color;
+  }
+
+
+
+}
+
+
+
+
 // Styles
 nav {
   background-color: $navbar-bg-color;
   color: $navbar-text-color;
   padding: 1em;
-
-  .navbar-brand{
-    font-size: 3em;
-    font-weight: 900;
-    text-decoration: none;
-    color: $navbar-special-text-color;
-
-
-  }
-
-  .authButton, .loggedBtn {
-    display: inline-block;
-    padding: 0.2rem 0.5rem;
-    border: 1px solid #fff;
-    border-radius: 0.25rem; /* Adjust the value for more or less rounded edges */
-    color: #fff;
-    text-align: center;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
-    &:hover{
-      background-color: rgba(255, 255, 255, 0.1);
-    }
-  }
 
 
   ul {
@@ -41,8 +43,8 @@ nav {
 
     li {
       display: inline;
-      margin-right: 4em;
 
+      margin-right: 1em;
 
 
 
@@ -51,10 +53,65 @@ nav {
         text-decoration: none;
         font-size: 1.3em;
 
+
         &:hover {
           color: $navbar-special-text-color;
         }
+
       }
+
+
     }
+  }
+
+  a{
+    &:hover {
+      color: $navbar-special-text-color;
+    }
+  }
+
+
+  .searchBar{
+    margin-left: 3.5em;
+  }
+
+  .navbar{
+    display: flex;
+    align-items: center;
+  }
+
+  .navbar-brand{
+    font-size: 3em;
+    font-weight: 900;
+    text-decoration: none;
+    color: $navbar-special-text-color;
+  }
+
+
+  .btnWrp {
+    @include button-styles();
+
+
+  }
+
+  .form-control{
+    background-color: $navbar-bg-color;
+    color: $navbar-text-color;
+    box-shadow: 0 0 0 0.1rem $navbar-special-text-color;
+    outline: none;
+    border-color: $navbar-special-text-color;
+
+    &::placeholder {
+      color: $navbar-text-color;
+    }
+
+  }
+
+  #log{
+    margin-right: 4em;
+  }
+
+  #sBtn{
+    margin-left: 3em;
   }
 }
